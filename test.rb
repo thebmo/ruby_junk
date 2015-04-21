@@ -1,13 +1,14 @@
 class Monster
+	attr_reader :name
+
 	def initialize(name)
 		@name = name
-	end
-	def name
-		@name
 	end
 end
 
 class Dragon < Monster
+	attr_reader :color
+
 	def initialize(name)
 		super
 		@color = "None"
@@ -15,10 +16,6 @@ class Dragon < Monster
 
 	def breath
 		"breaths non-colored flames!"
-	end
-
-	def color
-		@color
 	end
 end
 
