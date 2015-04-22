@@ -1,40 +1,20 @@
-class Monster
-	attr_reader :name
+x = { turkey: "Large Bird"}
 
-	def initialize(name)
-		@name = name
-	end
-end
+y = { turkey: "Bird"}
 
-class Dragon < Monster
-	attr_reader :color
+combined = {}
 
-	def initialize(name)
-		super
-		@color = "None"
-	end
 
-	def breath
-		"breaths non-colored flames!"
-	end
-end
 
-class BlueDragon < Dragon
-	def initialize(name)
-		super
-		@color ="blue"
+x.each {|k, _|
+
+	if x[k] == y[k]
+		puts "#{x[k]} == #{y[k]}"
+	else
+		puts "#{x[k]} != #{y[k]}"
+		combined[k] = [x[k], y[k]]
 	end
 
-	def breath
-		"breaths blue flames!"
-	end
-end
+}
 
-
-onixyia = Dragon.new("Onixyia")
-puts "#{onixyia.name} is #{onixyia.color}"
-
-azurgos = BlueDragon.new("Azurgos")
-puts "#{azurgos.name} is #{azurgos.color}"
-
-puts "#{onixyia.name} is still #{onixyia.color}"
+puts combined

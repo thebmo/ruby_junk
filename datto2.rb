@@ -1,19 +1,28 @@
-# old = { :name => 'Eric', :age => 33, :location => { :city => "Somerville", :state => "MA" } }
 
-# new = { :name => 'Eric', :age => 34, :location => { :city => "Cambridge", :state => "MA" } }
 
-# diff(old, new)
-# -> { :age => [33, 34], :location => { :city => [ "Somerville", "Cambridge" ] } }
-
-def diff(old, new):
-    combined = {}
+def diff(old_h, new_h)
+    combined = Hash.new
     
-    for k in old:
-        old[k] != new[k]:
+	old_h.each { |k, _|
+        
+        if old_h[k] != new_h[k]
             
-            if type(old[k]) == dict:
-                combined[k] = diff(old[k], new[k])
-            else:
-                combined[k] = [old[k],  new[k]]
+            if old_h[k].is_a?(Hash)
+                combined[k] = diff(old_h[k], new_h[k])
+            else
+            	combined[k] = [old_h[k],  new_h[k]]
+            end
+            
+        else
+        	combined[k] = old_h[k]
+        end
+    }
 
-    return combined
+    combined
+end
+
+# TEST CODE
+old_h = { :name => 'Eric', :age => 33, :location => { :city => "Somerville", :state => "MA" } }
+new_h = { :name => 'Eric', :age => 34, :location => { :city => "Cambridge", :state => "MA" } }
+
+puts diff(old_h, new_h)
